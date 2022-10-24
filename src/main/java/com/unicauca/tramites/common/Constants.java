@@ -7,8 +7,8 @@ public final class Constants {
     }
 
     //SWAGGER
-    public static final String SWAGGER_TITLE = "Tramites PQRSF Backend";
-    public static final String SWAGGER_DESCRIPTION = "Documentación de servicios REST para el proyecto de tramites PQRSF";
+    public static final String SWAGGER_TITLE = "Trámites PQRSF Backend";
+    public static final String SWAGGER_DESCRIPTION = "Documentación de servicios REST para el proyecto de trámites PQRSF";
     public static final String SWAGGER_VERSION = "v0.0.1";
 
     //GENERAL
