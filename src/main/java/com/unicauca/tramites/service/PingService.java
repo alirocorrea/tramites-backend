@@ -1,9 +1,10 @@
 package com.unicauca.tramites.service;
 
-import com.unicauca.tramites.dto.PingDTO;
+import com.unicauca.tramites.dto.PingResponse;
 
 public interface PingService {
 
-    PingDTO getPingMessageServer();
-    PingDTO getPingMessageDB();
+    PingResponse getPingMessageServer();
+
+    PingResponse getPingMessageDB();
 }

@@ -14,4 +14,8 @@ public final class Constants {
     //GENERAL
     public static final String NOT_CREATE_OBJECT = "No se debe crear instancias de esta clase";
     public static final String SERVER_PING_MESSAGE = "Conexión exitosa con el servidor tramites-backend";
+
+    //EXCEPCIONES
+    public static final Integer APPLICATION_EXCEPTION_STATUS = 400;
+    public static final String APPLICATION_EXCEPTION_MESSAGE = "Application Exception";
 }

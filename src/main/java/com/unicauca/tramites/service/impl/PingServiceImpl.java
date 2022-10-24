@@ -1,7 +1,8 @@
 package com.unicauca.tramites.service.impl;
 
 import com.unicauca.tramites.domain.Configuraciones;
-import com.unicauca.tramites.dto.PingDTO;
+import com.unicauca.tramites.dto.PingResponse;
+import com.unicauca.tramites.exception.ApplicationException;
 import com.unicauca.tramites.mapper.PingMapper;
 import com.unicauca.tramites.repository.ConfiguracionesRepository;
 import com.unicauca.tramites.service.PingService;
@@ -16,16 +17,16 @@ public class PingServiceImpl implements PingService {
     private ConfiguracionesRepository  configuracionesRepository;
 
     @Override
-    public PingDTO getPingMessageServer() {
+    public PingResponse getPingMessageServer() {
         return PingMapper.buildDTO(Constants.SERVER_PING_MESSAGE);
     }
 
     @Override
-    public PingDTO getPingMessageDB() {
+    public PingResponse getPingMessageDB() {
         Configuraciones configuraciones = configuracionesRepository.findById(1L).orElse(null);
-        if(configuraciones != null && configuraciones.getMensajePing() != null) {
-          return PingMapper.buildDTO(configuraciones.getMensajePing());
+        if(configuraciones == null) {
+            throw new ApplicationException("No se encontró el registro de configuración");
         }
-        return null;
+        return PingMapper.buildDTO(configuraciones.getMensajePing());
     }
 }
