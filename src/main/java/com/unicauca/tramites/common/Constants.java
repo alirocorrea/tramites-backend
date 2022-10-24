@@ -1,0 +1,17 @@
+package com.unicauca.tramites.common;
+
+
+public final class Constants {
+    private Constants() {
+        throw new IllegalStateException(Constants.NOT_CREATE_OBJECT);
+    }
+
+    //SWAGGER
+    public static final String SWAGGER_TITLE = "Tramites PQRSF Backend";
+    public static final String SWAGGER_DESCRIPTION = "Documentación de servicios REST para el proyecto de tramites PQRSF";
+    public static final String SWAGGER_VERSION = "v0.0.1";
+
+    //GENERAL
+    public static final String NOT_CREATE_OBJECT = "No se debe crear instancias de esta clase";
+    public static final String SERVER_PING_MESSAGE = "Conexión exitosa con el servidor tramites-backend";
+}

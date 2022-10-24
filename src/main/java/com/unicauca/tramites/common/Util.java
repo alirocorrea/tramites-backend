@@ -1,4 +1,4 @@
-package com.unicauca.tramites.util;
+package com.unicauca.tramites.common;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 public final class Util {
 
     private Util() {
-        throw new IllegalStateException("Utility class");
+        throw new IllegalStateException(Constants.NOT_CREATE_OBJECT);
     }
 
     public static String getDateTimeString() {
