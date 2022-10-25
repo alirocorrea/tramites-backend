@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @OpenAPIDefinition(info = @Info(title = Constants.SWAGGER_TITLE, description = Constants.SWAGGER_DESCRIPTION, version = Constants.SWAGGER_VERSION))
 @Tag(name = "Ping Controller" , description = "Servicios para pruebas de conexión")
 @RestController
-@RequestMapping("/ping")
+@RequestMapping("/api/ping")
 public class PingController {
 
     private PingService pingService;
