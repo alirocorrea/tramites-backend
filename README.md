@@ -1,7 +1,7 @@
 
 # tramites-backend
 
-[Spring Boot](http://projects.spring.io/spring-boot/) application of PQRSF procedures for the University of Cauca, CO.
+Application in [Spring Boot](http://projects.spring.io/spring-boot/) of requests for claims and complaints for the University of Cauca, CO.
 
 ## Requirements
 
