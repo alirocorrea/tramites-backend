@@ -22,4 +22,4 @@ mvn spring-boot:run
 
 ## Copyright
 
-Released under the Apache License 2.0. See the [LICENSE](https://github.com/codecentric/springboot-sample-app/blob/master/LICENSE) file.
+Released under the Apache License 2.0. See the [LICENSE](https://github.com/alirocorrea/tramites-backend/blob/main/LICENSE) file.
