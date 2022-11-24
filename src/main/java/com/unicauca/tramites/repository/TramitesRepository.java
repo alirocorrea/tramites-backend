@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface TramitesRepository extends JpaRepository<Tramite, Long> {
 
-   @Query(
-           value = "SELECT count(*) FROM tbl_tramite WHERE tbl_tramite.NUMEROVU = ?",
-           nativeQuery = true
-   )
-   public int numeroTramites(@Param("numeroVu")long numeroVU);
+   @Query("SELECT COUNT(tr) FROM Tramite tr WHERE tr.numeroVU = ?1")
+   Integer numeroTramites( Long numeroVU);
 }

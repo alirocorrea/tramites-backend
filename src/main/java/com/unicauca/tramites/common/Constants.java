@@ -18,4 +18,7 @@ public final class Constants {
     //EXCEPCIONES
     public static final Integer APPLICATION_EXCEPTION_STATUS = 400;
     public static final String APPLICATION_EXCEPTION_MESSAGE = "Application Exception";
+
+    //MENSAJES
+    public static final String ID_FORANEAS_TRAMITES_INVALIDOS = "Indentificadores de tipo tramite o dependencia invalidos";
 }

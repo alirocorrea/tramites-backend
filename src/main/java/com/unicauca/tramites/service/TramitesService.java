@@ -1,8 +1,10 @@
 package com.unicauca.tramites.service;
 
 import com.unicauca.tramites.domain.Tramite;
+import com.unicauca.tramites.dto.TramiteRequest;
+import com.unicauca.tramites.dto.TramiteResponse;
 
 
 public interface TramitesService {
-    Tramite registrarTramite(Tramite tramite) ;
+    TramiteResponse registrarTramite(TramiteRequest tramiteRequest) ;
 }
