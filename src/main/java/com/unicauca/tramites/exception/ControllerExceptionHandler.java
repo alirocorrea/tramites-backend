@@ -1,7 +1,7 @@
 package com.unicauca.tramites.exception;
 
-import com.unicauca.tramites.dto.ErrorResponse;
-import com.unicauca.tramites.mapper.ErrorMapper;
+import com.unicauca.tramites.dto.ExceptionResponse;
+import com.unicauca.tramites.mapper.ExceptionMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,8 +12,8 @@ import org.springframework.web.context.request.WebRequest;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(ApplicationException.class)
-    public ResponseEntity<ErrorResponse> handleResponseException(ApplicationException ex, WebRequest webRequest) {
-        ErrorResponse response = ErrorMapper.buildDTO(ex.getMessage());
+    public ResponseEntity<ExceptionResponse> handleResponseException(ApplicationException ex, WebRequest webRequest) {
+        ExceptionResponse response = ExceptionMapper.buildDTO(ex.getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }

@@ -7,7 +7,15 @@ import java.time.format.DateTimeFormatter;
 public final class Util {
 
     private Util() {
-        throw new IllegalStateException(Constants.NOT_CREATE_OBJECT);
+        throw new IllegalStateException(Constants.UTILITY_CLASS);
+    }
+
+    public static boolean isNull(Object object) {
+        return object == null;
+    }
+
+    public static boolean isNotNull(Object object) {
+        return !isNull(object);
     }
 
     public static String getDateTimeString() {
@@ -15,8 +23,12 @@ public final class Util {
         return LocalDateTime.now().format(formatter);
     }
 
-    public static LocalDate stringToLocalDate(String fecha){
+    public static LocalDate stringToLocalDate(String fecha) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return LocalDate.parse(fecha, formatter);
+    }
+
+    public static boolean esFechaMenorIgualActual(LocalDate date) {
+        return date.compareTo(LocalDate.now()) <= 0;
     }
 }

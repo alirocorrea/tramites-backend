@@ -7,7 +7,7 @@ import com.unicauca.tramites.common.Util;
 public final class PingMapper {
 
     private PingMapper() {
-        throw new IllegalStateException(Constants.NOT_CREATE_OBJECT);
+        throw new IllegalStateException(Constants.UTILITY_CLASS);
     }
 
     public static PingResponse buildDTO(String message) {

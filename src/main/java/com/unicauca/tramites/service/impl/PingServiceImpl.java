@@ -8,7 +8,6 @@ import com.unicauca.tramites.repository.ConfiguracionesRepository;
 import com.unicauca.tramites.service.PingService;
 import com.unicauca.tramites.common.Constants;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class PingServiceImpl implements PingService {
 
     private ConfiguracionesRepository  configuracionesRepository;
+
     @Override
     public PingResponse getPingMessageServer() {
         return PingMapper.buildDTO(Constants.SERVER_PING_MESSAGE);
@@ -23,10 +23,8 @@ public class PingServiceImpl implements PingService {
 
     @Override
     public PingResponse getPingMessageDB() {
-        Configuraciones configuraciones = configuracionesRepository.findById(2L).orElse(null);
-        if(configuraciones == null) {
-            throw new ApplicationException("No se encontró el registro de configuración");
-        }
-        return PingMapper.buildDTO(configuraciones.getMensajePing());
+        Configuraciones configuraciones = configuracionesRepository.findById(1L)
+                .orElseThrow(() ->  new ApplicationException(Constants.ERROR_OBTENIENDO_CONFIGURACION_DB));
+        return PingMapper.buildDTO(configuraciones.getMensaje());
     }
 }

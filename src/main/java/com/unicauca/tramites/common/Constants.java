@@ -3,23 +3,26 @@ package com.unicauca.tramites.common;
 
 public final class Constants {
     private Constants() {
-        throw new IllegalStateException(Constants.NOT_CREATE_OBJECT);
+        throw new IllegalStateException(Constants.UTILITY_CLASS);
     }
 
     //SWAGGER
-    public static final String SWAGGER_TITLE = "Trámites PQRSF Backend";
-    public static final String SWAGGER_DESCRIPTION = "Documentación de servicios REST para el proyecto de trámites PQRSF";
+    public static final String SWAGGER_TITLE = "API Trámites PQRSF Backend";
+    public static final String SWAGGER_DESCRIPTION = "Servicios REST para el proyecto de trámites PQRSF de la Universidad del Cauca";
     public static final String SWAGGER_VERSION = "v0.0.1";
 
     //GENERAL
-    public static final String NOT_CREATE_OBJECT = "No se debe crear instancias de esta clase";
-    public static final String SERVER_PING_MESSAGE = "Conexión exitosa con el servidor tramites-backend";
+    public static final String UTILITY_CLASS = "Utility class";
+    public static final String SERVER_PING_MESSAGE = "Conexión correcta con tramites-server";
 
     //EXCEPCIONES
     public static final Integer APPLICATION_EXCEPTION_STATUS = 400;
     public static final String APPLICATION_EXCEPTION_MESSAGE = "Application Exception";
 
     //MENSAJES
-    public static final String ID_FORANEAS_TRAMITES_INVALIDOS = "Indentificadores de tipo tramite o dependencia invalidos";
     public static final String FECHA_INVALIDA = "Fecha de registro superior a la fecha actual";
+    public static final String ID_TIPO_TRAMITE_INVALIDO = "ID del tipo tramite invalido";
+    public static final String ID_TIPO_RECEPCION_INVALIDO = "ID del tipo recepcion invalido";
+    public static final String ID_DEPENDENCIA_INVALIDO = "ID de la dependencia invalido";
+    public static final String ERROR_OBTENIENDO_CONFIGURACION_DB = "No se encontró la configuración en la db";
 }

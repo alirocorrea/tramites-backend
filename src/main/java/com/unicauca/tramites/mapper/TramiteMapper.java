@@ -6,26 +6,22 @@ import com.unicauca.tramites.domain.Tramite;
 import com.unicauca.tramites.dto.TramiteRequest;
 import com.unicauca.tramites.dto.TramiteResponse;
 
-import java.time.LocalDateTime;
-
 public final class TramiteMapper {
 
     private TramiteMapper() {
-        throw new IllegalStateException(Constants.NOT_CREATE_OBJECT);
+        throw new IllegalStateException(Constants.UTILITY_CLASS);
     }
 
     public static Tramite mapearEntidad(TramiteRequest tramiteRequest) {
-        Tramite tramite = new Tramite();
-        tramite.setNumeroVU(tramiteRequest.getNumeroVU());
-        tramite.setCorreo(tramiteRequest.getCorreo());
-        tramite.setAsunto(tramiteRequest.getAsunto());
-        tramite.setNumOficio(tramiteRequest.getNumOficio());
-        tramite.setDescripcion(tramiteRequest.getDescripcion());
-        tramite.setNombrePeticionario(tramiteRequest.getNombrePeticionario());
-        tramite.setFechaRecepcion(Util.stringToLocalDate(tramiteRequest.getFechaRecepcion()));
-        tramite.setActivo(Boolean.TRUE);
-        tramite.setFechaCreacionRegistro(LocalDateTime.now());
-        return tramite;
+        return Tramite.builder()
+                .numeroVU(tramiteRequest.getNumeroVU())
+                .correo(tramiteRequest.getCorreo())
+                .asunto(tramiteRequest.getAsunto())
+                .numeroOficio(tramiteRequest.getNumeroOficio())
+                .descripcion(tramiteRequest.getDescripcion())
+                .nombrePeticionario(tramiteRequest.getNombrePeticionario())
+                .fechaRecepcion(Util.stringToLocalDate(tramiteRequest.getFechaRecepcion()))
+                .build();
     }
 
     public static TramiteResponse mapearResponse(Tramite tramite) {

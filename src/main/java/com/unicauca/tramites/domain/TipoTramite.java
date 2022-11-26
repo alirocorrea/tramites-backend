@@ -1,18 +1,15 @@
 package com.unicauca.tramites.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "tbl_tipo_tramite")
-@NoArgsConstructor
-public class TipoTramite implements Serializable {
+public class TipoTramite extends EntidadPrincipal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_tramite")
@@ -23,14 +20,4 @@ public class TipoTramite implements Serializable {
 
     @Column(name = "vigencia")
     private int vigencia;
-
-    @Column(name = "activo")
-    private String activo;
-
-    @Column(name = "fecha_creacion_registro")
-    private String fecha_registro;
-
-    @OneToMany(mappedBy = "tipoTramite")
-    @JsonIgnore
-    List<Tramite> tramites;
 }

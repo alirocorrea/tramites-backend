@@ -1,20 +1,16 @@
 package com.unicauca.tramites.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.unicauca.tramites.domain.catalogo.TipoRecepcion;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@Builder
 @Entity
 @Table(name = "tbl_tramite")
-@NoArgsConstructor
-public class Tramite implements Serializable {
+public class Tramite extends EntidadPrincipal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +36,7 @@ public class Tramite implements Serializable {
     private String asunto;
 
     @Column(name = "numero_oficio")
-    private String numOficio;
+    private String numeroOficio;
 
     @Column(name = "nombre_peticionario")
     private String nombrePeticionario;
@@ -57,12 +53,6 @@ public class Tramite implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "activo")
-    private Boolean activo;
-
-    @Column(name = "fecha_creacion_registro")
-    private LocalDateTime fechaCreacionRegistro;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_tramite")
     private TipoTramite tipoTramite;
@@ -74,7 +64,4 @@ public class Tramite implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_recepcion")
     private TipoRecepcion tipoRecepcion;
-
-
-
 }

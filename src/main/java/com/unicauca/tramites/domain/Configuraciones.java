@@ -15,6 +15,6 @@ public class Configuraciones implements Serializable {
     @Column(name = "id_configuraciones")
     private Long id;
 
-    @Column(name = "mensaje_ping")
-    private String mensajePing;
+    @Column(name = "mensaje")
+    private String mensaje;
 }

@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @Builder
-public class TramiteResponse {
+public class CatalogoReponse {
 
     private Long id;
+    private String descripcion;
 }
