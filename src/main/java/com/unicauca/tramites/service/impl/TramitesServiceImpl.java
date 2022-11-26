@@ -15,7 +15,7 @@ import com.unicauca.tramites.service.TramitesService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Service
 @AllArgsConstructor
@@ -40,12 +40,28 @@ public class TramitesServiceImpl implements TramitesService {
         Tramite tramite = TramiteMapper.mapearEntidad(tramiteRequest);
         tramite.setTipoTramite(tipoTramite);
         tramite.setDependencia(dependencia);
+
+        if(!validarFechaRecepcion(tramite))
+            throw new ApplicationException(Constants.FECHA_INVALIDA);
+        calcularFechaVencimiento(tramite,tipoTramite);
         return TramiteMapper.mapearResponse(tramitesRepository.save(tramite));
     }
 
     private boolean validarNumeroVU(TramiteRequest tramiteRequest){
         Integer numeroTramites = tramitesRepository.numeroTramites(tramiteRequest.getNumeroVU());
         return (numeroTramites == 0);
+    }
+
+    private boolean validarFechaRecepcion(Tramite tramite){
+        if(tramite.getFechaRecepcion().compareTo(LocalDate.now())>0){
+            return false;
+        }
+        return true;
+    }
+    private void calcularFechaVencimiento(Tramite tramite, TipoTramite tipoTramite){
+
+        LocalDate fechaVencimiento = tramite.getFechaRecepcion().plusDays(tipoTramite.getVigencia());
+        tramite.setFechaVencimiento(fechaVencimiento);
     }
 
 }

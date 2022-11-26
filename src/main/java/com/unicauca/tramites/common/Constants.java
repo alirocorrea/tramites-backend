@@ -21,4 +21,5 @@ public final class Constants {
 
     //MENSAJES
     public static final String ID_FORANEAS_TRAMITES_INVALIDOS = "Indentificadores de tipo tramite o dependencia invalidos";
+    public static final String FECHA_INVALIDA = "Fecha de registro superior a la fecha actual";
 }

@@ -22,7 +22,7 @@ public class TipoTramite implements Serializable {
     private String descripcion;
 
     @Column(name = "vigencia")
-    private String vigencia;
+    private int vigencia;
 
     @Column(name = "activo")
     private String activo;
