@@ -39,7 +39,7 @@ After any required changes have been made to the Dockerfile, you can build a Doc
 ```sh
 docker build -t  tramites-backend .
 ```
-where tramites-backend` is the name you want to give your created Docker image.
+where `tramites-backend` is the name you want to give your created Docker image.
 
 ### Running the Docker image for your application
 You can run it using either of the following commands:
