@@ -20,7 +20,7 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 mvn spring-boot:run
 ```
 
-## Running using `Dockerfile`
+## Running using Dockerfile
 
 The Dockerfile template creates a Docker image for your application that:
 
