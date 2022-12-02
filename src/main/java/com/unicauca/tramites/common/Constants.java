@@ -16,8 +16,10 @@ public final class Constants {
     public static final String SERVER_PING_MESSAGE = "Conexión correcta con tramites-server";
 
     //EXCEPCIONES
-    public static final Integer APPLICATION_EXCEPTION_STATUS = 400;
-    public static final String APPLICATION_EXCEPTION_MESSAGE = "Application Exception";
+    public static final Integer BAD_REQUEST_STATUS = 400;
+    public static final String APPLICATION_EXCEPTION = "Application Exception";
+    public static final String DATA_EXCEPTION = "Data Exception";
+    public static final String CONSTRAINT_VIOLATION_EXCEPTION = "Constraint Violation Exception";
 
     //MENSAJES
     public static final String FECHA_INVALIDA = "Fecha de registro superior a la fecha actual";
