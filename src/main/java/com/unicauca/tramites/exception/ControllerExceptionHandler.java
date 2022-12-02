@@ -26,7 +26,7 @@ public class ControllerExceptionHandler {
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ExceptionResponse> handleDataException(ConstraintViolationException ex, WebRequest webRequest) {
+    public ResponseEntity<ExceptionResponse> handleConstraintViolationException(ConstraintViolationException ex, WebRequest webRequest) {
         ExceptionResponse response = ExceptionMapper.mapConstraintViolationException(ex.getCause().getMessage());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
