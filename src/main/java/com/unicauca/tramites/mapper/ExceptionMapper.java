@@ -9,10 +9,26 @@ public final class ExceptionMapper {
         throw new IllegalStateException(Constants.UTILITY_CLASS);
     }
 
-    public static ExceptionResponse buildDTO(String message) {
+    public static ExceptionResponse mapApplicationException(String message) {
         return ExceptionResponse.builder()
-                .status(Constants.APPLICATION_EXCEPTION_STATUS)
-                .error(Constants.APPLICATION_EXCEPTION_MESSAGE)
+                .status(Constants.BAD_REQUEST_STATUS)
+                .error(Constants.APPLICATION_EXCEPTION)
+                .message(message)
+                .build();
+    }
+
+    public static ExceptionResponse mapDataException(String message) {
+        return ExceptionResponse.builder()
+                .status(Constants.BAD_REQUEST_STATUS)
+                .error(Constants.DATA_EXCEPTION)
+                .message(message)
+                .build();
+    }
+
+    public static ExceptionResponse mapConstraintViolationException(String message) {
+        return ExceptionResponse.builder()
+                .status(Constants.BAD_REQUEST_STATUS)
+                .error(Constants.CONSTRAINT_VIOLATION_EXCEPTION)
                 .message(message)
                 .build();
     }
