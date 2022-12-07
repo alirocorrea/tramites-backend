@@ -28,7 +28,7 @@ public class TramitesServiceImpl implements TramitesService {
     @Override
     public TramiteResponse registrarTramite(TramiteRequest request) {
         if (!esValidoNumeroVU(request)) {
-            throw new ApplicationException(Constants.ERROR_NUMERO_VU);
+            return null;
         }
         TipoPeticionario tipoPeticionario = tipoPeticionarioRepository.findById(request.getIdTipoTipoPeticionario())
                 .orElseThrow(() -> new ApplicationException(Constants.ERROR_TIPO_PETICIONARIO)) ;
