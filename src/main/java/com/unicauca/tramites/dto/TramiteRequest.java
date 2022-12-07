@@ -20,4 +20,5 @@ public class TramiteRequest {
     private Long idDependencia;
     private Long idTipoRecepcion;
     private String descripcion;
+    private Long idTipoTipoPeticionario;
 }

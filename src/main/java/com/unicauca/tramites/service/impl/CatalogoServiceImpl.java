@@ -4,6 +4,7 @@ import com.unicauca.tramites.domain.EntidadPrincipal;
 import com.unicauca.tramites.dto.CatalogoReponse;
 import com.unicauca.tramites.mapper.CatalogoMapper;
 import com.unicauca.tramites.repository.DependenciaRepository;
+import com.unicauca.tramites.repository.TipoPeticionarioRepository;
 import com.unicauca.tramites.repository.TipoRecepcionRepository;
 import com.unicauca.tramites.repository.TipoTramitesRepository;
 import com.unicauca.tramites.service.CatalogoService;
@@ -20,6 +21,8 @@ public class CatalogoServiceImpl implements CatalogoService {
     private TipoRecepcionRepository tipoRecepcionRepository;
     private TipoTramitesRepository tipoTramitesRepository;
     private DependenciaRepository dependenciaRepository;
+    
+    private TipoPeticionarioRepository tipoPeticionarioRepository;
 
     @Override
     public List<CatalogoReponse> getTipoRecepcion() {
@@ -41,6 +44,13 @@ public class CatalogoServiceImpl implements CatalogoService {
         return  dependenciaRepository.findAll().stream()
                 .filter(EntidadPrincipal::getActivo)
                 .map(CatalogoMapper::mapDependencia)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CatalogoReponse> getTipoPeticionario() {
+        return  tipoPeticionarioRepository.findAll().stream()
+                .map(CatalogoMapper::mapTipoPeticionario)
                 .collect(Collectors.toList());
     }
 }

@@ -27,4 +27,7 @@ public final class Constants {
     public static final String ID_TIPO_RECEPCION_INVALIDO = "ID del tipo recepcion invalido";
     public static final String ID_DEPENDENCIA_INVALIDO = "ID de la dependencia invalido";
     public static final String ERROR_OBTENIENDO_CONFIGURACION_DB = "No se encontró la configuración en la db";
+
+    public static final String ERROR_TIPO_PETICIONARIO = "ID del tipo peticionario invalido";
+    public static final String ERROR_NUMERO_VU = "El numero de ventanilla única ya se encuentra registrado";
 }

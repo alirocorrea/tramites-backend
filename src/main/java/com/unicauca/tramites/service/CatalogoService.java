@@ -11,4 +11,7 @@ public interface CatalogoService {
     List<CatalogoReponse> getTipoTramite();
 
     List<CatalogoReponse> getDependencia();
+
+    List<CatalogoReponse> getTipoPeticionario();
+
 }
