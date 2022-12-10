@@ -3,6 +3,8 @@ package com.unicauca.tramites.service.impl;
 import com.unicauca.tramites.common.Constants;
 import com.unicauca.tramites.common.Util;
 import com.unicauca.tramites.domain.*;
+import com.unicauca.tramites.dto.ListaTramiteRequest;
+import com.unicauca.tramites.dto.ListaTramiteResponse;
 import com.unicauca.tramites.dto.TramiteRequest;
 import com.unicauca.tramites.dto.TramiteResponse;
 import com.unicauca.tramites.exception.ApplicationException;
@@ -13,6 +15,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +26,7 @@ public class TramitesServiceImpl implements TramitesService {
     private DependenciaRepository dependenciaRepository;
     private TipoTramitesRepository tipoTramitesRepository;
     private TipoRecepcionRepository tipoRecepcionRepository;
-
+    private TramitesRespositoryCustom tramitesRespositoryCustom;
     private TipoPeticionarioRepository tipoPeticionarioRepository;
 
     @Override
@@ -52,6 +56,14 @@ public class TramitesServiceImpl implements TramitesService {
         }
         tramite.setFechaVencimiento(calcularFechaVencimiento(tramite, tipoTramite));
         return TramiteMapper.mapearResponse(tramitesRepository.save(tramite));
+    }
+
+    @Override
+    public List<ListaTramiteResponse> listaTramites(ListaTramiteRequest request) {
+        List<Tramite> tramiteList = tramitesRespositoryCustom.getTramitesFiltros(request);
+        return  tramiteList.stream()
+                .map(TramiteMapper::mapearListaTramiteResponse)
+                .collect(Collectors.toList());
     }
 
     private boolean esValidoNumeroVU(TramiteRequest request) {

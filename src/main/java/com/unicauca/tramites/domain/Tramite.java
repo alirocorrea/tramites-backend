@@ -8,6 +8,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tbl_tramite")
 public class Tramite extends EntidadPrincipal {

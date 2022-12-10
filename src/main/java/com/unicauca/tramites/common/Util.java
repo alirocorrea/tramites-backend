@@ -24,8 +24,19 @@ public final class Util {
     }
 
     public static LocalDate stringToLocalDate(String fecha) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return LocalDate.parse(fecha, formatter);
+        if(Util.isNotNull(fecha)){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return LocalDate.parse(fecha, formatter);
+        }
+        return null;
+    }
+
+    public static String localDateToString(LocalDate fecha) {
+        if(Util.isNotNull(fecha)) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            return fecha.format(formatter);
+        }
+        return null;
     }
 
     public static boolean esFechaMenorIgualActual(LocalDate date) {

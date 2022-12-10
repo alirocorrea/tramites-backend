@@ -3,6 +3,7 @@ package com.unicauca.tramites.mapper;
 import com.unicauca.tramites.common.Constants;
 import com.unicauca.tramites.common.Util;
 import com.unicauca.tramites.domain.Tramite;
+import com.unicauca.tramites.dto.ListaTramiteResponse;
 import com.unicauca.tramites.dto.TramiteRequest;
 import com.unicauca.tramites.dto.TramiteResponse;
 
@@ -29,5 +30,15 @@ public final class TramiteMapper {
 
     public static TramiteResponse mapearResponse(Tramite tramite) {
         return TramiteResponse.builder().id(tramite.getId()).build();
+    }
+
+    public static ListaTramiteResponse mapearListaTramiteResponse(Tramite tramite) {
+        return ListaTramiteResponse.builder()
+                .numeroVU(tramite.getNumeroVU())
+                .asunto(tramite.getAsunto())
+                .fechaRecepcion(Util.localDateToString(tramite.getFechaRecepcion()))
+                .fechaVencimiento(Util.localDateToString(tramite.getFechaVencimiento()))
+                .descripcionTipoTramite(tramite.getTipoTramite().getDescripcion())
+                .build();
     }
 }
