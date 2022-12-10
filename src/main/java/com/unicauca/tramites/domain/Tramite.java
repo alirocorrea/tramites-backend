@@ -8,6 +8,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tbl_tramite")
 public class Tramite extends EntidadPrincipal {
@@ -64,4 +66,8 @@ public class Tramite extends EntidadPrincipal {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_recepcion")
     private TipoRecepcion tipoRecepcion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tipo_peticionario")
+    private TipoPeticionario tipoPeticionario;
 }

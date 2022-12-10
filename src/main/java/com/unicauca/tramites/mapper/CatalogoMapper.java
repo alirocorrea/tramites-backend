@@ -2,6 +2,7 @@ package com.unicauca.tramites.mapper;
 
 import com.unicauca.tramites.common.Constants;
 import com.unicauca.tramites.domain.Dependencia;
+import com.unicauca.tramites.domain.TipoPeticionario;
 import com.unicauca.tramites.domain.TipoRecepcion;
 import com.unicauca.tramites.domain.TipoTramite;
 import com.unicauca.tramites.dto.CatalogoReponse;
@@ -29,6 +30,13 @@ public final class CatalogoMapper {
         return CatalogoReponse.builder()
                 .id(dependencia.getId())
                 .descripcion(dependencia.getDescripcion())
+                .build();
+    }
+
+    public static CatalogoReponse mapTipoPeticionario(TipoPeticionario tipoPeticionario) {
+        return CatalogoReponse.builder()
+                .id(tipoPeticionario.getId())
+                .descripcion(tipoPeticionario.getDescripcion())
                 .build();
     }
 }

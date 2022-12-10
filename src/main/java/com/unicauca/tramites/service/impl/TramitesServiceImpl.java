@@ -2,23 +2,21 @@ package com.unicauca.tramites.service.impl;
 
 import com.unicauca.tramites.common.Constants;
 import com.unicauca.tramites.common.Util;
-import com.unicauca.tramites.domain.Dependencia;
-import com.unicauca.tramites.domain.TipoRecepcion;
-import com.unicauca.tramites.domain.TipoTramite;
-import com.unicauca.tramites.domain.Tramite;
+import com.unicauca.tramites.domain.*;
+import com.unicauca.tramites.dto.ListaTramiteRequest;
+import com.unicauca.tramites.dto.ListaTramiteResponse;
 import com.unicauca.tramites.dto.TramiteRequest;
 import com.unicauca.tramites.dto.TramiteResponse;
 import com.unicauca.tramites.exception.ApplicationException;
 import com.unicauca.tramites.mapper.TramiteMapper;
-import com.unicauca.tramites.repository.DependenciaRepository;
-import com.unicauca.tramites.repository.TipoRecepcionRepository;
-import com.unicauca.tramites.repository.TipoTramitesRepository;
-import com.unicauca.tramites.repository.TramitesRepository;
+import com.unicauca.tramites.repository.*;
 import com.unicauca.tramites.service.TramitesService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -28,12 +26,17 @@ public class TramitesServiceImpl implements TramitesService {
     private DependenciaRepository dependenciaRepository;
     private TipoTramitesRepository tipoTramitesRepository;
     private TipoRecepcionRepository tipoRecepcionRepository;
+    private TramitesRespositoryCustom tramitesRespositoryCustom;
+    private TipoPeticionarioRepository tipoPeticionarioRepository;
 
     @Override
     public TramiteResponse registrarTramite(TramiteRequest request) {
         if (!esValidoNumeroVU(request)) {
             return null;
         }
+        TipoPeticionario tipoPeticionario = tipoPeticionarioRepository.findById(request.getIdTipoTipoPeticionario())
+                .orElseThrow(() -> new ApplicationException(Constants.ERROR_TIPO_PETICIONARIO)) ;
+
         TipoTramite tipoTramite = tipoTramitesRepository.findById(request.getIdTipoTramite())
                 .orElseThrow(() -> new ApplicationException(Constants.ID_TIPO_TRAMITE_INVALIDO));
         Dependencia dependencia = dependenciaRepository.findById(request.getIdDependencia())
@@ -42,15 +45,25 @@ public class TramitesServiceImpl implements TramitesService {
                 tipoRecepcionRepository.findById(request.getIdTipoRecepcion())
                         .orElseThrow(() -> new ApplicationException(Constants.ID_TIPO_RECEPCION_INVALIDO)) : null ;
 
+
         Tramite tramite = TramiteMapper.mapearEntidad(request);
         tramite.setTipoTramite(tipoTramite);
         tramite.setDependencia(dependencia);
         tramite.setTipoRecepcion(tipoRecepcion);
+        tramite.setTipoPeticionario((tipoPeticionario));
         if(!esValidaFechaRecepcion(tramite)){
             throw new ApplicationException(Constants.FECHA_INVALIDA);
         }
         tramite.setFechaVencimiento(calcularFechaVencimiento(tramite, tipoTramite));
         return TramiteMapper.mapearResponse(tramitesRepository.save(tramite));
+    }
+
+    @Override
+    public List<ListaTramiteResponse> listaTramites(ListaTramiteRequest request) {
+        List<Tramite> tramiteList = tramitesRespositoryCustom.getTramitesFiltros(request);
+        return  tramiteList.stream()
+                .map(TramiteMapper::mapearListaTramiteResponse)
+                .collect(Collectors.toList());
     }
 
     private boolean esValidoNumeroVU(TramiteRequest request) {

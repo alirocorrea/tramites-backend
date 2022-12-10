@@ -37,4 +37,10 @@ public class CatalogoController {
     public ResponseEntity<List<CatalogoReponse>> getDependencia() {
         return ResponseEntity.ok(catalogoService.getDependencia());
     }
+
+    @Operation(summary = "Obtener los tipos de peticionarios")
+    @GetMapping("/tipo-peticionario")
+    public ResponseEntity<List<CatalogoReponse>> getTipoPeticionario() {
+        return ResponseEntity.ok(catalogoService.getTipoPeticionario());
+    }
 }
