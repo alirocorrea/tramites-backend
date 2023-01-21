@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -70,4 +71,8 @@ public class Tramite extends EntidadPrincipal {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_peticionario")
     private TipoPeticionario tipoPeticionario;
+
+    @OneToMany(mappedBy = "tbl_tramite",  cascade = CascadeType.ALL)
+    @OrderBy("fechaCreacion")
+    private List<Traza> trazas;
 }

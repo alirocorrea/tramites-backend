@@ -30,4 +30,9 @@ public final class Constants {
 
     public static final String ERROR_TIPO_PETICIONARIO = "ID del tipo peticionario invalido";
     public static final String ERROR_NUMERO_VU = "El numero de ventanilla única ya se encuentra registrado";
+    public static final String ERROR_NUMERO_VU_NO_EXISTE = "El numero de ventanilla única no existe";
+
+    public static final String ERROR_ID_TRAMITE = "EL ID del tramite no existe";
+
+    public static final String ERROR_TRAZABILIDAD_NULA = "No existe trazabilidad";
 }
