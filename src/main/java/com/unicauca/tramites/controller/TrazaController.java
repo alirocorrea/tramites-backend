@@ -1,5 +1,7 @@
 package com.unicauca.tramites.controller;
 
+import com.unicauca.tramites.domain.Tramite;
+import com.unicauca.tramites.dto.TramiteResponse;
 import com.unicauca.tramites.dto.TrazaRequest;
 import com.unicauca.tramites.dto.TrazaResponse;
 import com.unicauca.tramites.service.TrazaService;
@@ -24,7 +26,7 @@ public class TrazaController {
     }
     @Operation(summary = "Mostrar la trazabilidad de un tramite")
     @GetMapping
-    public List<TrazaResponse> trazabilidad(@RequestParam Long numeroVU ) {
+    public TramiteResponse trazabilidad(@RequestParam Long numeroVU ) {
         return trazaService.verTraza(numeroVU);
     }
 }

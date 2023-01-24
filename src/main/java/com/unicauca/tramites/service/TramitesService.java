@@ -12,4 +12,5 @@ public interface TramitesService {
     TramiteResponse registrarTramite(TramiteRequest tramiteRequest) ;
 
     List<ListaTramiteResponse> listaTramites(ListaTramiteRequest request);
+
 }

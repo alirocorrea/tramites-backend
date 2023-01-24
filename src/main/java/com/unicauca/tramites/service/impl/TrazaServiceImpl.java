@@ -2,9 +2,11 @@ package com.unicauca.tramites.service.impl;
 
 import com.unicauca.tramites.common.Constants;
 import com.unicauca.tramites.domain.*;
+import com.unicauca.tramites.dto.TramiteResponse;
 import com.unicauca.tramites.dto.TrazaRequest;
 import com.unicauca.tramites.dto.TrazaResponse;
 import com.unicauca.tramites.exception.ApplicationException;
+import com.unicauca.tramites.mapper.TramiteMapper;
 import com.unicauca.tramites.mapper.TrazaMapper;
 import com.unicauca.tramites.repository.DependenciaRepository;
 import com.unicauca.tramites.repository.TipoTramitesRepository;
@@ -48,16 +50,18 @@ public class TrazaServiceImpl implements TrazaService {
     }
 
     @Override
-    public List<TrazaResponse> verTraza(Long numeroVU) {
+    public TramiteResponse verTraza(Long numeroVU) {
 
         List<Traza>trazabilidad = trazaRepository.trazaPorVU(numeroVU)
                 .orElseThrow(() -> new ApplicationException(Constants.ID_DEPENDENCIA_INVALIDO)) ;
-
         List<TrazaResponse>trazaResponseList = new ArrayList<>();
         for(Traza objTraza :trazabilidad) {
             trazaResponseList.add(TrazaMapper.mapearResponse(objTraza));
         }
-        return  trazaResponseList;
+       Tramite tramite = tramitesRepository.tramitePorVu(numeroVU).orElseThrow(()->new ApplicationException(Constants.ERROR_NUMERO_VU_NO_EXISTE));
+       TramiteResponse tramiteResponse = TramiteMapper.mapearResponse(tramite);
+       tramiteResponse.setTraza(trazaResponseList);
+       return  tramiteResponse;
     }
 
     private LocalDateTime calcularFechaVencimiento(TipoTramite tipoTramite) {

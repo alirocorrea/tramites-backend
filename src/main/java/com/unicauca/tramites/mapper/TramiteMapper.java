@@ -6,6 +6,7 @@ import com.unicauca.tramites.domain.Tramite;
 import com.unicauca.tramites.dto.ListaTramiteResponse;
 import com.unicauca.tramites.dto.TramiteRequest;
 import com.unicauca.tramites.dto.TramiteResponse;
+import com.unicauca.tramites.dto.TrazaResponse;
 
 public final class TramiteMapper {
 
@@ -29,7 +30,21 @@ public final class TramiteMapper {
     }
 
     public static TramiteResponse mapearResponse(Tramite tramite) {
-        return TramiteResponse.builder().id(tramite.getId()).build();
+        return TramiteResponse.builder().id(tramite.getId())
+                .Asunto(tramite.getAsunto())
+                .tipoPQRSF(tramite.getTipoTramite().getDescripcion())
+                .peticionario(tramite.getNombrePeticionario())
+                .tipoPeticionario((tramite.getTipoPeticionario().getDescripcion()))
+                .numeroOficio((tramite.getNumeroOficio()))
+                .dependencia(tramite.getDependencia().getDescripcion())
+                .email(tramite.getCorreo())
+                .celular(tramite.getCelular())
+                .direccion(tramite.getDireccion())
+                .fechaRecepcion(tramite.getFechaRecepcion().toString())
+                .fechaVencimiento(tramite.getFechaVencimiento().toString())
+                .medioRecepcion(tramite.getTipoRecepcion().getDescripcion())
+                .descripcion(tramite.getDescripcion())
+                .build();
     }
 
     public static ListaTramiteResponse mapearListaTramiteResponse(Tramite tramite) {

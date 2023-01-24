@@ -19,10 +19,8 @@ public class TrazaMapper {
     }
     public static TrazaResponse mapearResponse(Traza traza) {
         return TrazaResponse.builder()
-                .numeroVU(traza.getTbl_tramite().getNumeroVU())
                 .fechaCreacion(traza.getFechaCreacion().toString())
                 .descripcion(traza.getDescripcion())
-                .fechaVencimiento(traza.getFechaVencimiento().toString())
                 .dependencia(traza.getDependencia().getDescripcion())
                 .activo(traza.getActivo())
                 .numeroOficio(traza.getNumeroOficio())
