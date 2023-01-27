@@ -35,4 +35,5 @@ public final class Constants {
     public static final String ERROR_ID_TRAMITE = "EL ID del tramite no existe";
 
     public static final String ERROR_TRAZABILIDAD_NULA = "No existe trazabilidad";
+    public static final String ERROR_IGUAL_DEPENDENCIA = "El tramite no se puede redigir a la misma dependencia";
 }

@@ -8,10 +8,7 @@ import com.unicauca.tramites.dto.TrazaResponse;
 import com.unicauca.tramites.exception.ApplicationException;
 import com.unicauca.tramites.mapper.TramiteMapper;
 import com.unicauca.tramites.mapper.TrazaMapper;
-import com.unicauca.tramites.repository.DependenciaRepository;
-import com.unicauca.tramites.repository.TipoTramitesRepository;
-import com.unicauca.tramites.repository.TramitesRepository;
-import com.unicauca.tramites.repository.TrazaRepository;
+import com.unicauca.tramites.repository.*;
 import com.unicauca.tramites.service.TrazaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,8 +26,12 @@ public class TrazaServiceImpl implements TrazaService {
     private DependenciaRepository dependenciaRepository;
     private TipoTramitesRepository tipoTramitesRepository;
 
+
     @Override
     public TrazaResponse registrarTraza(TrazaRequest trazaRequest) {
+
+        if(!validarUltimoNodo(trazaRequest))
+            throw new ApplicationException(Constants.ERROR_IGUAL_DEPENDENCIA);
 
         Dependencia dependencia = dependenciaRepository.findById(trazaRequest.getIdDependencia())
                 .orElseThrow(() -> new ApplicationException(Constants.ID_DEPENDENCIA_INVALIDO)) ;
@@ -67,6 +68,13 @@ public class TrazaServiceImpl implements TrazaService {
     private LocalDateTime calcularFechaVencimiento(TipoTramite tipoTramite) {
 
         return LocalDateTime.now().plusDays(tipoTramite.getVigencia());
+    }
+    private boolean validarUltimoNodo(TrazaRequest trazaRequest){
+        List<Traza>trazabilidad = trazaRepository.trazaPorVU(trazaRequest.getNumeroVU()).get();
+        if(trazabilidad.size()>0){
+            return trazabilidad.get(trazabilidad.size()-1).getDependencia().getId() != trazaRequest.getIdDependencia();
+        }
+        return true;
     }
 
 
