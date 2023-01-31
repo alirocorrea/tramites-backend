@@ -40,8 +40,8 @@ public final class TramiteMapper {
                 .email(tramite.getCorreo())
                 .celular(tramite.getCelular())
                 .direccion(tramite.getDireccion())
-                .fechaRecepcion(tramite.getFechaRecepcion().toString())
-                .fechaVencimiento(tramite.getFechaVencimiento().toString())
+                .fechaRecepcion(Util.localDateToString(tramite.getFechaCreacion().toLocalDate()))
+                .fechaVencimiento(Util.localDateToString(tramite.getFechaVencimiento()))
                 .medioRecepcion(tramite.getTipoRecepcion().getDescripcion())
                 .descripcion(tramite.getDescripcion())
                 .build();

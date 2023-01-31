@@ -13,7 +13,6 @@ import com.unicauca.tramites.service.TrazaService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,6 @@ public class TrazaServiceImpl implements TrazaService {
         Traza traza = TrazaMapper.mapearEntidad(trazaRequest);
         traza.setDependencia(dependencia);
         traza.setTbl_tramite(tramite);
-        traza.setFechaVencimiento(calcularFechaVencimiento(tipoTramite).toLocalDate());
 
         return TrazaMapper.mapearResponse(trazaRepository.save(traza));
     }
@@ -65,16 +63,13 @@ public class TrazaServiceImpl implements TrazaService {
        return  tramiteResponse;
     }
 
-    private LocalDateTime calcularFechaVencimiento(TipoTramite tipoTramite) {
-
-        return LocalDateTime.now().plusDays(tipoTramite.getVigencia());
-    }
     private boolean validarUltimoNodo(TrazaRequest trazaRequest){
-        List<Traza>trazabilidad = trazaRepository.trazaPorVU(trazaRequest.getNumeroVU()).get();
-        if(trazabilidad.size()>0){
-            return trazabilidad.get(trazabilidad.size()-1).getDependencia().getId() != trazaRequest.getIdDependencia();
+        List<Traza> trazabilidad = trazaRepository.trazaPorVU(trazaRequest.getNumeroVU()).orElse(null);
+        if(trazabilidad != null && !trazabilidad.isEmpty()){
+            Dependencia ultimaDependencia = trazabilidad.get(trazabilidad.size()-1).getDependencia();
+            return !ultimaDependencia.getId().equals(trazaRequest.getIdDependencia());
         }
-        return true;
+        return Boolean.TRUE;
     }
 
 

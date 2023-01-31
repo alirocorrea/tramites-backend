@@ -36,7 +36,5 @@ public class Traza extends EntidadPrincipal {
     @Column(name = "numero_oficio")
     private String numeroOficio;
 
-    @Column(name = "fecha_vencimiento")
-    private LocalDate fechaVencimiento;
 
 }
