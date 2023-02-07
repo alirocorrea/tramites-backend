@@ -75,4 +75,5 @@ public class Tramite extends EntidadPrincipal {
     @OneToMany(mappedBy = "tbl_tramite",  cascade = CascadeType.ALL)
     @OrderBy("fechaCreacion")
     private List<Traza> trazas;
+
 }

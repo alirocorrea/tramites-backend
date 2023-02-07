@@ -42,4 +42,6 @@ public final class Util {
     public static boolean esFechaMenorIgualActual(LocalDate date) {
         return date.compareTo(LocalDate.now()) <= 0;
     }
+
+
 }

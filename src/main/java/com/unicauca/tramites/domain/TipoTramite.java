@@ -20,4 +20,5 @@ public class TipoTramite extends EntidadPrincipal {
 
     @Column(name = "vigencia")
     private int vigencia;
+
 }

@@ -45,6 +45,7 @@ public class TrazaServiceImpl implements TrazaService {
         traza.setDependencia(dependencia);
         traza.setTbl_tramite(tramite);
 
+
         return TrazaMapper.mapearResponse(trazaRepository.save(traza));
     }
 

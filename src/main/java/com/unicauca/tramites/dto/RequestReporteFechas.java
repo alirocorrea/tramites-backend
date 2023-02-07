@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class RequestPrueba {
+public class RequestReporteFechas {
     String fechaInicial;
     String fechafinal;
 }
